@@ -39,8 +39,12 @@ function randomInteger(min, max) {
  *
  */
 function setDelay(difficulty) {
-  // TODO: Write your code here.
-  
+  if (difficulty === "hard") {
+    return randomInteger(600, 1200);
+  } else if (difficulty === "easy") {
+    return 1500;
+  }
+  return 1000;
 }
 
 /**
@@ -58,8 +62,7 @@ function setDelay(difficulty) {
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
 function chooseHole(holes) {
-  // TODO: Write your code here.
-
+  return holes[randomInteger(0, (holes.length - 1))];
 }
 
 /**
