@@ -150,7 +150,7 @@ h2 {
 }
 
 .bouya {
-  background: url("/assets/bouya.gif") bottom center no-repeat;
+  background: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/bouya.gif") bottom center no-repeat;
   background-size: 40%;
   position: absolute;
   top: 100%;

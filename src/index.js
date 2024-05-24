@@ -9,6 +9,7 @@ const gun = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-
 const taunt = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/taunt.mp3");
 const rack = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/SHOTGNCK.WAV");
 const letsDoIt = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/bossselect_choose.wav");
+const death = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/megaman_death.wav");
 const grid = document.querySelector(".grid")
 const easy = document.querySelector("#easy");
 const hard = document.querySelector("#hard");
@@ -153,8 +154,10 @@ function showUp() {
   let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
   if (setBouya()){
-    hole.children[0].classList.remove("mole");
-    hole.children[0].classList.add("bouya");
+    const bouyaHole = hole.children[0];
+    bouyaHole.classList.remove("mole");
+    bouyaHole.classList.add("bouya");
+    bouyaHole.addEventListener("click", shootBouya);
   }
   return showAndHide(hole, delay);
 }
@@ -254,12 +257,20 @@ function startTimer() {
 *
 */
 function whack(event) {
+  if (event.srcElement.classList.contains("bouya")){
+    return points;
+  }
   updateScore();
   return points;
 }
 
 function playShootEffect(){
   gun.play();
+}
+
+function shootBouya(event) {
+  death.play();
+  return stopGame();
 }
 
 /**
