@@ -1,10 +1,10 @@
 html {
-  background: url("/assets/check-bg.png") repeat;
+  background: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/check-bg.png") repeat;
   box-sizing: border-box;
   z-index: 0;
   overflow: hidden;
   font-family: "VT323", monospace;
-  cursor: url("/assets/hand.png"), pointer;
+  cursor: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/hand.png"), pointer;
 }
 
 h1 {
@@ -61,14 +61,14 @@ h2 {
 #easy:hover,
 #hard:hover,
 #normal:hover {
-  cursor: url("/assets/fist.png"), pointer;
+  cursor: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/fist.png"), pointer;
 }
 
 #start:active,
 #easy:active,
 #hard:active,
 #normal:active {
-  cursor: url("/assets/fist-pressed.png"), pointer;
+  cursor: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/fist-pressed.png"), pointer;
 }
 
 #buttons {
@@ -112,10 +112,10 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  cursor: url("/assets/duke.png"), pointer;
+  cursor: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/duke.png"), pointer;
 }
 .grid:active {
-  cursor: url("/assets/duke-shoot.png"), pointer;
+  cursor: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/duke-shoot.png"), pointer;
 }
 
 .hole {
@@ -126,7 +126,7 @@ h2 {
 
 .hole:after {
   display: block;
-  background: url("/assets/hole-2.png") bottom center no-repeat;
+  background: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/hole-2.png") bottom center no-repeat;
   background-size: contain;
   content: "";
   width: 100%;
@@ -138,7 +138,7 @@ h2 {
 }
 
 .mole {
-  background: url("/assets/weirdguy2.gif") bottom center no-repeat;
+  background: url("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/weirdguy2.gif") bottom center no-repeat;
   background-size: 40%;
   position: absolute;
   top: 100%;
