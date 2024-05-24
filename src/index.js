@@ -2,13 +2,22 @@ const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); 
-const timerDisplay = querySelector('#timer');
+const timerDisplay = document.querySelector('#timer');
+const gameStatus = document.querySelector('.gameTitle h2');
+const page = document.querySelector('body');
+const gun = new Audio("./assets/PISTOL.WAV");
+const taunt = new Audio("./assets/taunt.mp3");
+const rack = new Audio("./assets/SHOTGNCK.WAV");
+const letsDoIt = new Audio("./assets/bossselect_choose.wav");
+const grid = document.querySelector(".grid")
+const easy = document.querySelector("#easy");
+const hard = document.querySelector("#hard");
 
 let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = "normal";
 
 /**
  * Generates a random integer within a range.
@@ -21,6 +30,16 @@ let difficulty = "hard";
  */
 function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function setEasyDifficulty() {
+  letsDoIt.play();
+  difficulty = "easy";
+}
+
+function setHardDifficulty() {
+  letsDoIt.play();
+  difficulty = "hard";
 }
 
 /**
@@ -91,6 +110,7 @@ function gameOver() {
     timeoutID = showUp();
     return timeoutID;
   } else {
+    gameStatus.innerText = "YOU LOSE!";
     return stopGame();
   }
 }
@@ -121,6 +141,7 @@ function showUp() {
 function showAndHide(hole, delay){
   // TODO: call the toggleVisibility function so that it adds the 'show' class.
   toggleVisibility(hole);
+  taunt.play();
   const timeoutID = setTimeout(() => {
     // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
     toggleVisibility(hole);
@@ -208,15 +229,19 @@ function whack(event) {
   return points;
 }
 
+function playShootEffect(){
+  gun.play();
+}
+
 /**
 *
 * Adds the 'click' event listeners to the moles. See the instructions
 * for an example on how to set event listeners using a for loop.
 */
-function setEventListeners(moles){
-  for (mole of moles){
-    mole.addEventListener("click", whack(event));
-  }
+function setEventListeners(){
+  moles.forEach(
+    mole => mole.addEventListener('click', whack)
+  );
   return moles;
 }
 
@@ -238,8 +263,11 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song);  //optional
   clearInterval(timer);
+  time = 0;
+  timerDisplay.innerText = time;
+  startButton.innerText = "I want to get him again.";
+  startButton.classList.remove("hidden");
   return "game stopped";
 }
 
@@ -250,13 +278,24 @@ function stopGame(){
 *
 */
 function startGame(){
+  clearScore();
+  rack.play();
+  gameStatus.innerText = "GET HIM!";
+  startButton.classList.add("hidden");
+  setEventListeners();
   setDuration(10);
+  startTimer();
   showUp();
   return "game started";
 }
 
+grid.addEventListener("click", playShootEffect);
 startButton.addEventListener("click", startGame);
-
+easy.addEventListener("click", setEasyDifficulty);
+hard.addEventListener("click", setHardDifficulty);
+normal.addEventListener("click", (event) =>{
+    letsDoIt.play();
+})
 
 // Please do not modify the code below.
 // Used for testing purposes.

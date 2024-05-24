@@ -1,19 +1,36 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="./src/styles.css">
-    <title>MOLE HOLE MAYHEM</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>GET THE WEIRD GUY</title>
   </head>
   <body>
-    <h1 id="title">MOLE HOLE MAYHEM</h1>
-    <div>
-      <div>
-        <h2>Click start to play!</h2>
+    <div class="gameTitle">
+      <h1 id="title">
+        <img class="weirdguy" alt="a weirdo" src="/assets/weirdguy2.gif" />GET THE WEIRD
+        GUY<img class="weirdguy" alt="a weirdo" src="/assets/weirdguy2.gif" />
+      </h1>
+      <h2>You have to get him.</h2>
+    </div>
+    <div class="difficultySelection">
+      <h2>Difficulty:</h2>
+      <button id="easy">Piece of Cake</button>
+      <button id="normal">Let's Rock</button>
+      <button id="hard">Damn I'm Good</button>
+    </div>
+    </div>
+    <div class="gameInfo">
+      <div class="item">
+        <h2>Score: <span id="score">0</span></h2>
       </div>
-      <div>
-        <h2>score: <span id="score">0</span></h2>
-      </div>
-      <div>
-          <h2><span id="timer">0</span> seconds left.</h2>
+      <div class="item">
+        <h2>Time remaining: <span id="timer">0</span></h2>
       </div>
     </div>
     <div class="grid">
@@ -46,7 +63,7 @@
       </div>
     </div>
     <div class="start-button-container">
-      <button id="start">let's goooooooooo</button>
+      <button id="start">Get him now</button>
     </div>
     <script src="./src/index.js"></script>
   </body>
