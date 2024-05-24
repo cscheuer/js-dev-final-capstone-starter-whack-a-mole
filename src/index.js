@@ -4,12 +4,14 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); 
 const timerDisplay = document.querySelector('#timer');
 const gameStatus = document.querySelector('.gameTitle h2');
+const instructions = document.querySelector('#instructions');
 const page = document.querySelector('body');
 const gun = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/PISTOL.WAV");
 const taunt = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/taunt.mp3");
 const rack = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/SHOTGNCK.WAV");
 const letsDoIt = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/bossselect_choose.wav");
 const death = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/megaman_death.wav");
+const tadaima = new Audio("https://cscheuer.github.io/js-dev-final-capstone-starter-whack-a-mole/assets/tadaima.wav");
 const grid = document.querySelector(".grid")
 const easy = document.querySelector("#easy");
 const hard = document.querySelector("#hard");
@@ -171,11 +173,13 @@ function showUp() {
 *
 */
 function showAndHide(hole, delay){
-  // TODO: call the toggleVisibility function so that it adds the 'show' class.
   toggleVisibility(hole);
-  taunt.play();
+  if(hole.children[0].classList.contains("bouya")){
+    tadaima.play();
+  } else {
+    taunt.play();
+  }
   const timeoutID = setTimeout(() => {
-    // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
     toggleVisibility(hole);
     gameOver();
   }, delay); 
@@ -270,6 +274,7 @@ function playShootEffect(){
 
 function shootBouya(event) {
   death.play();
+  instructions.innerText = "You shot the bouya! He deserved better.";
   return stopGame();
 }
 
@@ -322,6 +327,7 @@ function startGame(){
   setBouya();
   rack.play();
   gameStatus.innerText = "GET HIM!";
+  instructions.innerText = "But be careful: shoot the bouya and you'll be a criminal and have to go to jail.";
   startButton.classList.add("hidden");
   setEventListeners();
   setDuration(100);
