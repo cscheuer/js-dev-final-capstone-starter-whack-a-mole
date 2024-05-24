@@ -18,6 +18,7 @@ let timer;
 let lastHole = 0;
 let points = 0;
 let difficulty = "normal";
+let bouya = 10;
 
 /**
  * Generates a random integer within a range.
@@ -35,11 +36,35 @@ function randomInteger(min, max) {
 function setEasyDifficulty() {
   letsDoIt.play();
   difficulty = "easy";
+  bouya = 0;
 }
 
 function setHardDifficulty() {
   letsDoIt.play();
   difficulty = "hard";
+  bouya = 4;
+}
+
+/**
+ * Sets the number of holes that will have tobidashi bouya 
+ */
+function setBouya(difficulty) {
+  const shouldSetBouya = randomInteger(1, bouya);
+  if (difficulty === "hard"){
+    if (shouldSetBouya % 2 === 0){
+      return true;
+    } else {
+      return false;
+    }
+  } else if (difficulty === "easy"){
+    return false;
+  } else {
+    if (shouldSetBouya % 2 === 0 && shouldSetBouya < 3){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 /**
@@ -127,6 +152,10 @@ function gameOver() {
 function showUp() {
   let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
+  if (setBouya()){
+    hole.children[0].classList.remove("mole");
+    hole.children[0].classList.add("bouya");
+  }
   return showAndHide(hole, delay);
 }
 
@@ -279,11 +308,12 @@ function stopGame(){
 */
 function startGame(){
   clearScore();
+  setBouya();
   rack.play();
   gameStatus.innerText = "GET HIM!";
   startButton.classList.add("hidden");
   setEventListeners();
-  setDuration(10);
+  setDuration(100);
   startTimer();
   showUp();
   return "game started";
